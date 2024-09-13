@@ -7,6 +7,7 @@
  * Author URI: https://embedcalendly.com/
  * Version: 3.8
  * License: GPLv2 or later
+ * Text Domain: embed-calendly-scheduling
  */
 
 defined('ABSPATH') or die('No script kiddies please.');
