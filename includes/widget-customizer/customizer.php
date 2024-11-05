@@ -8,7 +8,7 @@ class EMCS_Customizer
     {
         add_submenu_page(
             'emcs-event-types',
-            __('Customize Widget - Embed Calendly', 'embed-calendly-scheduling'),
+            __('Customize Widget - EMC', 'embed-calendly-scheduling'),
             __('Customizer', 'embed-calendly-scheduling'),
             'manage_options',
             'emcs-customizer',
@@ -25,7 +25,7 @@ class EMCS_Customizer
         $events = EMCS_Event_Types::get_event_types();
 ?>
         <div class="emcs-title">
-            <img src="<?php echo esc_url(EMCS_URL . 'assets/img/emc-logo.svg') ?>" alt="<?php esc_attr_e('embed calendly logo', 'embed-calendly-scheduling'); ?>" width="200px" />
+            <img src="<?php echo esc_url(EMCS_URL . 'assets/img/emc-logo.svg') ?>" alt="<?php esc_attr_e('emc logo', 'embed-calendly-scheduling'); ?>" width="200px" />
         </div>
         <div class="emcs-subtitle">
             <?php esc_html_e('Widget Customizer', 'embed-calendly-scheduling'); ?>

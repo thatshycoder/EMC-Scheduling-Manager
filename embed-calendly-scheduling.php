@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Plugin Name: Embed Calendly
- * Description: Easy and simple way to embed Calendly scheduling pages on WordPress.
- * Author: Embed Calendly, Shycoder
- * Author URI: https://embedcalendly.com/
- * Version: 3.8
+ * Plugin Name: EMC Scheduling Manager
+ * Description: Simplest way to integrate Calendly scheduling features in WordPress.
+ * Author: Simpma Solutions, Shycoder
+ * Author URI: https://simpma.com/emc
+ * Version: 4.0
  * License: GPLv2 or later
  * Text Domain: embed-calendly-scheduling
  */

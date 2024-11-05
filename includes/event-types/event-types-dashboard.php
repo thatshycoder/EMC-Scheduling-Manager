@@ -8,18 +8,18 @@ class EMCS_Event_Types_Dashboard
     public static function init()
     {
         add_menu_page(
-            __('Embed Calendly', 'embed-calendly-scheduling'),
-            __('Embed Calendly', 'embed-calendly-scheduling'),
+            __('EMC Scheduling Manager', 'embed-calendly-scheduling'),
+            __('EMC', 'embed-calendly-scheduling'),
             'manage_options',
             'emcs-event-types',
             'EMCS_Event_Types_Dashboard::emcs_event_list_html',
-            '',
+            'dashicons-calendar-alt',
             30
         );
 
         add_submenu_page(
             'emcs-event-types',
-            __('Event Types', 'embed-calendly-scheduling'),
+            __('Event Types - EMC', 'embed-calendly-scheduling'),
             __('Event Types', 'embed-calendly-scheduling'),
             'manage_options',
             'emcs-event-types',
@@ -36,7 +36,7 @@ class EMCS_Event_Types_Dashboard
         $events = EMCS_Event_Types::get_event_types();
 ?>
         <div class="emcs-title">
-            <img src="<?php echo esc_url(EMCS_URL . 'assets/img/emc-logo.svg') ?>" alt="<?php esc_attr_e('embed calendly logo', 'embed-calendly-scheduling'); ?>" width="200px" />
+            <img src="<?php echo esc_url(EMCS_URL . 'assets/img/emc-logo.svg') ?>" alt="<?php esc_attr_e('emc logo', 'embed-calendly-scheduling'); ?>" width="200px" />
         </div>
         <div class="emcs-subtitle">
             <?php esc_html_e('Event Types', 'embed-calendly-scheduling'); ?>
@@ -128,7 +128,7 @@ class EMCS_Event_Types_Dashboard
         {
     ?>
     <div class="emcs-dashboard-greeting">
-        <?php esc_html_e('Thank you for downloading Embed Calendly!', 'embed-calendly-scheduling'); ?>
+        <?php esc_html_e('Thank you for downloading EMC Scheduling Manager!', 'embed-calendly-scheduling'); ?>
         <div class="emcs-greeting-right">
             <a href="<?php echo esc_url(admin_url('admin.php?page=emcs-settings#emcs-thankyou')); ?>"><?php esc_html_e('Read thank you note', 'embed-calendly-scheduling'); ?></a> |
             <a href="<?php echo esc_url(admin_url('admin.php?page=emcs-event-types&emcs_display_greeting=0')); ?>" class="emcs-greeting-dismiss"><?php esc_html_e('Dismiss', 'embed-calendly-scheduling'); ?></a>
