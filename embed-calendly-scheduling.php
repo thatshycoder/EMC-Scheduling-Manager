@@ -2,10 +2,10 @@
 
 /**
  * Plugin Name: EMC Scheduling Manager
- * Description: Simplest way to integrate Calendly scheduling features in WordPress.
+ * Description: Simplest way to manage & embed Calendly scheduling features in WordPress.
  * Author: Simpma Solutions, Shycoder
  * Author URI: https://simpma.com/emc
- * Version: 4.0
+ * Version: 4.1
  * License: GPLv2 or later
  * Text Domain: embed-calendly-scheduling
  */

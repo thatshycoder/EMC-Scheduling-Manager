@@ -1,8 +1,13 @@
-=== EMC Scheduling Manager ===
+=== EMC - Easily Embed Calendly Scheduling Features ===
 Authors: Simpma Solutions, Shycoder
 Plugin Page: https://wordpress.org/plugins/embed-calendly-scheduling/
 
 == Changelog ==
+
+= 4.1 - 26-11-2024 =
+
+- Verified compatibility with WordPress updates.
+- Updated readme
 
 = 4.0 - 05-11-2024 =
 
