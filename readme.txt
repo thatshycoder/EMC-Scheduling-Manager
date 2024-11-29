@@ -1,10 +1,10 @@
 === EMC - Easily Embed Calendly Scheduling Features ===
 Contributors: turn2honey
-Donate link: https://simpma.com/emc#pricing
+Donate link: https://simpma.com/emc/pricing/
 Tags: appointment, booking, embed calendar, calendly, scheduling
 Requires at least: 4.6
 Tested up to: 6.7.1
-Stable tag: 4.0
+Stable tag: 4.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ Simplest way to embed your booking calendar and integrate Calendly scheduling fe
 
 == Description ==
 
-[EMC Scheduling Manager](https://simpma.com/emc) is the simplest way to embed Calendly scheduling pages in your website. 
+[EMC Scheduling Manager](https://simpma.com/emc/) is the simplest way to embed Calendly scheduling pages in your website. 
 
 Allows visitors to easily schedule meetings *anywhere* on your WordPress website through Calendly.
 
@@ -108,7 +108,7 @@ The free version comes with optional promotion notices that can be easily disabl
 
 These notices are shown in your admin dashboard, and once any of them is disabled, all other promotion notices from EMC Scheduling Manager are disabled.
 
-You can upgrade to the [pro version](https://simpma.com/emc#pricing/) to automatically disable all promotion notices.
+You can upgrade to the [pro version](https://simpma.com/emc/pricing/) to automatically disable all promotion notices.
 
 Optionally, you can disable the promotions by also including the below code snippet in your theme's function.php file:
 

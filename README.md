@@ -1,6 +1,6 @@
 ## EMC Scheduling Manager
 
-[EMC Scheduling Manager](https://simpma.com/emc) helps you add Calendly scheduling pages to your WordPress website in an easy and simple way. 
+[EMC Scheduling Manager](https://simpma.com/emc/) helps you add Calendly scheduling pages to your WordPress website in an easy and simple way. 
 
 Allows visitors to easily schedule meetings *anywhere* on your WordPress website, through Calendly.
 
