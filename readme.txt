@@ -13,13 +13,13 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description
 
-**[EMC Scheduling Manager](https://simpma.com/emc/)** is the **easiest way** to integrate your Calendly scheduling pages into your WordPress website. Forget the back-and-forth between multiple tabs, now you can **manage common Calendly tasks** directly from WordPress with just a few clicks!
+[EMC Scheduling Manager](https://simpma.com/emc/) is the **easiest way** to integrate your Calendly scheduling pages into your WordPress website. Forget the back-and-forth between multiple tabs, now you can **manage common Calendly tasks** directly from WordPress with just a few clicks!
 
 Whether you want to display your Calendly booking page inline, as a button, or in a popup, EMC Scheduling Manager gives you the flexibility to **customize and embed** your booking page just how you want it.
 
 It's simple to use, fast to set up, and saves you time every day. But what really sets EMC apart is its **seamless integration** into your WordPress dashboard. Manage appointments and bookings without ever needing to leave your site.
 
-Ready to simplify your scheduling workflow? **EMC Pro** offers even more powerful features to make managing your Calendly appointments easier than ever!
+Ready to simplify your scheduling workflow? [EMC Pro](https://simpma.com/emc/pricing/) offers even more powerful features to make managing your Calendly appointments easier than ever!
 
 ## Free Version Features
 
@@ -35,7 +35,7 @@ The free version is perfect for users who need a basic yet effective Calendly in
 
 ## Pro Version Features (Unlock Powerful Upgrades!)
 
-Ready to take your scheduling to the next level? The **Pro version** offers **advanced features** that save you time, help you optimize your workflow, and give you deeper insights into your scheduling efforts:
+Ready to take your scheduling to the next level? [EMC Pro](https://simpma.com/emc/pricing/) offers **advanced features** that save you time, help you optimize your workflow, and give you deeper insights into your scheduling efforts:
 
 - **View and cancel your Calendly bookings directly from WordPress** — no need to leave your site!  
 - **Advanced analytics dashboard** to track the performance of your booking pages — see which events are getting the most traction and make data-driven decisions.  
@@ -49,14 +49,16 @@ With **EMC Pro**, you'll be able to do more than just schedule appointments — 
 
 🔓 **Unlock EMC Pro** and get everything you need to simplify scheduling and improve your workflow today!
 
+[Learn More >>](https://simpma.com/emc/pricing/)
+
 ## Shortcode
 
 To add a Calendly scheduling page to your WordPress site, use the following shortcode:
-[calendly url="https://calendly.com/example/call" type="1"]
+`[calendly url="https://calendly.com/example/call" type="1"]`
 
 You can also customize it further with additional options to match your needs:
 
-[calendly url="https://calendly.com/example/call" type="2" text="Book Now" text_color="#ffffff" text_size="14" button_style="1" button_size="1" button_color="#2694ea" branding="false" hide_details="false" style_class="custom_form_style"]
+`[calendly url="https://calendly.com/example/call" type="2" text="Book Now" text_color="#ffffff" text_size="14" button_style="1" button_size="1" button_color="#2694ea" branding="false" hide_details="false" style_class="custom_form_style"]`
 
 ## Customization
 
@@ -84,7 +86,7 @@ Use the **widget customizer** under **Dashboard > EMC > Customizer**, or apply t
 - `hide_details` – Show or hide event details (0/1)  
 - `style_class` – Custom CSS class for your embed widget  
 
-## Why You'll Love EMC Scheduling Manager
+## Why You'll Love EMC
 
 - **No more juggling tabs!** Manage all your Calendly bookings and appointments **directly from WordPress** — save time and streamline your process.  
 - **Save time and reduce hassle** with automatic email reminders, contact management, and powerful analytics — handle it all in one place!  
@@ -93,7 +95,7 @@ Use the **widget customizer** under **Dashboard > EMC > Customizer**, or apply t
 
 **Try the Free Version** today and get started with an easy-to-embed Calendly integration. Ready for more? **Upgrade to Pro** and unlock more features, more flexibility, and more time saved. You'll wonder how you ever managed without it!
 
-[Learn More >>](https://simpma.com/emc/)
+[Learn More >>](https://simpma.com/emc/pricing/)
 
 == Frequently Asked Questions ==
 
