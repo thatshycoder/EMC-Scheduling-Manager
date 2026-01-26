@@ -3,13 +3,13 @@ Contributors: turn2honey
 Donate link: https://simpma.com/emc/pricing/
 Tags: appointment, booking, embed calendar, calendly, scheduling
 Requires at least: 4.6
-Tested up to: 6.7.1
-Stable tag: 4.2
+Tested up to: 6.9
+Stable tag: 4.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-# Simplest Way to Embed Calendly Scheduling Features Into WordPress
+Simplest Way to Embed Calendly Scheduling Features Into WordPress
 
 ## Description
 
@@ -54,6 +54,7 @@ With **EMC Pro**, you'll be able to do more than just schedule appointments — 
 ## Shortcode
 
 To add a Calendly scheduling page to your WordPress site, use the following shortcode:
+
 `[calendly url="https://calendly.com/example/call" type="1"]`
 
 You can also customize it further with additional options to match your needs:
@@ -69,9 +70,9 @@ Use the **widget customizer** under **Dashboard > EMC > Customizer**, or apply t
   - *2* for popup button embed  
   - *3* for popup text embed  
 - `url` – Link to your Calendly scheduling page  
-- `text` – Button or link text (e.g., “Book Now”)  
+- `text` – Button or link text (e.g., "Book Now")  
 - `text_color` – Button or link text color (hex code)  
-- `text_size` – Button or link text size (e.g., “14”)  
+- `text_size` – Button or link text size (e.g., "14")  
 - `button_color` – Button background color (hex code)  
 - `button_size` – Button size:  
   - *1* (small)  
@@ -139,6 +140,10 @@ function emcs_show_promotions() {
 `
 
 == Changelog ==
+
+= 4.3 - 26-01-2026 =
+
+- Tested & ensured compatibility with the latest WordPress version
 
 = 4.2 - 17-01-2025 =
 
