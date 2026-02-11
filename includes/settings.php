@@ -47,7 +47,7 @@ function emcs_v2api_field_cb($args)
         <div class="form-group col-md-8">
             <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" placeholder="<?php echo !empty($options[$args['label_for']]) ? '*****************' : ''; ?>" class="form-control" />
             <p id="<?php echo esc_attr($args['label_for']); ?>_description">
-                <?php printf(esc_html__('Generate your personal access token on the %1$sintegerations%2$s page'), '<a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>', '</em></a>'); ?>
+                <?php printf(esc_html__('Generate your personal access token on the %1$sintegerations%2$s page', 'embed-calendly-scheduling'), '<a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>', '</em></a>'); ?>
             </p>
         </div>
     </div>
@@ -63,7 +63,7 @@ function emcs_api_field_cb($args)
         <div class="form-group col-md-8">
             <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" placeholder="<?php echo !empty($options[$args['label_for']]) ? '*****************' : ''; ?>" class="form-control" />
             <p id="<?php echo esc_attr($args['label_for']); ?>_description">
-                <?php printf(esc_html__('Your API Key can be found on Calendly %1$sintegerations%2$s page'), '<a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>', '</em></a>'); ?>
+                <?php printf(esc_html__('Your API Key can be found on Calendly %1$sintegerations%2$s page', 'embed-calendly-scheduling'), '<a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>', '</em></a>'); ?>
             </p>
         </div>
     </div>
@@ -131,7 +131,7 @@ function emcs_settings_page_html()
                             <span class="dashicons dashicons-star-filled emcs-dashicon emcs-dashicon-rating"></span>
                             <span class="dashicons dashicons-star-filled emcs-dashicon emcs-dashicon-rating"></span>
                             <?php printf(esc_html__('on %1$sWordPress.org%2$s 
-                            - much appreciated!'), '<a href="https://wordpress.org/support/plugin/embed-calendly-scheduling/reviews/#new-post" target="_blank">', '</a>'); ?>
+                            - much appreciated!', 'embed-calendly-scheduling'), '<a href="https://wordpress.org/support/plugin/embed-calendly-scheduling/reviews/#new-post" target="_blank">', '</a>'); ?>
                         </p><br>
 
                     </div>

@@ -39,7 +39,7 @@ class EMCS_Customizer
             <?php
 
             if (empty($events)) {
-                printf(esc_html__('%1$sCreate an event type in your Calendly account to begin customization.%1$s'), '<div class="emcs-text-center">', '</div>');
+                printf(esc_html__('%1$sCreate an event type in your Calendly account to begin customization.%1$s', 'embed-calendly-scheduling'), '<div class="emcs-text-center">', '</div>');
                 return;
             }
 
