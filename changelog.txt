@@ -4,6 +4,10 @@ Plugin Page: https://wordpress.org/plugins/embed-calendly-scheduling/
 
 == Changelog ==
 
+= 4.5 - 21-02-2026 =
+
+- Security fixes
+
 = 4.4 - 05-02-2026 =
 
 - Support for passing UTM and GCLID parameters to Calendly

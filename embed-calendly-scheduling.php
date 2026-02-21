@@ -5,7 +5,7 @@
  * Description: Simplest way to manage & embed Calendly scheduling features in WordPress.
  * Author: Simpma Solutions
  * Author URI: https://simpma.com/emc/
- * Version: 4.4
+ * Version: 4.5
  * License: GPLv2 or later
  * Text Domain: embed-calendly-scheduling
  */
