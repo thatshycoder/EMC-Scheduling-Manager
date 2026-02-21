@@ -3,8 +3,8 @@ Contributors: turn2honey
 Donate link: https://simpma.com/emc/pricing/
 Tags: appointment, booking, embed calendar, calendly, scheduling
 Requires at least: 4.6
-Tested up to: 6.9
-Stable tag: 4.3
+Tested up to: 6.9.1
+Stable tag: 4.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ Simplest Way to Embed Calendly Scheduling Features Into WordPress
 
 ## Description
 
-[EMC Scheduling Manager](https://simpma.com/emc/) is the **easiest way** to integrate your Calendly scheduling pages into your WordPress website. Forget the back-and-forth between multiple tabs, now you can **manage common Calendly tasks** directly from WordPress with just a few clicks!
+[EMC Scheduling Manager](https://simpma.com/emc/) is the **easiest way** to integrate your Calendly scheduling pages into your WordPress website. Embed Calendly features into WordPress with ease, forget the back-and-forth between multiple tabs, now you can **manage common Calendly tasks** directly from WordPress with just a few clicks!
 
 Whether you want to display your Calendly booking page inline, as a button, or in a popup, EMC Scheduling Manager gives you the flexibility to **customize and embed** your booking page just how you want it.
 
@@ -23,7 +23,7 @@ Ready to simplify your scheduling workflow? [EMC Pro](https://simpma.com/emc/pri
 
 ## Free Version Features
 
-The **free version** of EMC Scheduling Manager comes with all the basic features you need to integrate Calendly into your WordPress site. It's simple, easy, and effective:
+The **free version** of EMC Scheduling Manager comes with all the basic features you need to integrate and embed Calendly into your WordPress site. It's simple, easy, and effective:
 
 - **Import Calendly event types** directly into WordPress  
 - **Customize embed widgets** using shortcode  
@@ -119,7 +119,7 @@ Example: [calendly type="1" url="https://calendly.com/example/call" style_class=
 
 == Disclaimer == 
 
-This is an unofficial plugin for integrating Calendly features into WordPress.
+This is an unofficial plugin for integrating/embedding Calendly features into WordPress.
 
 The free version comes with optional promotion notices that can be easily disabled by clicking the "Don't show again" button, near the notice.
 
@@ -140,6 +140,11 @@ function emcs_show_promotions() {
 `
 
 == Changelog ==
+
+= 4.4 - 05-02-2026 =
+
+- Support for passing UTM and GCLID parameters to Calendly
+- Tested & ensured compatibility with the latest WordPress version
 
 = 4.3 - 26-01-2026 =
 

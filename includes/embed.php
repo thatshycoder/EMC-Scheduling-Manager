@@ -123,7 +123,7 @@ class EMCS_Embed
                 if (!empty($current_user->user_email)) {
 
                     $email = urlencode($current_user->user_email);
-                    $updated_url .= "?email=$email";
+                    $updated_url .= (parse_url($updated_url, PHP_URL_QUERY) ? '&' : '?') . "email=$email";
                 }
 
                 if (!empty($current_user->first_name)) {
@@ -135,7 +135,7 @@ class EMCS_Embed
                 }
 
                 if (!empty($name)) {
-                    $updated_url .= "&name=$name";
+                    $updated_url .= (parse_url($updated_url, PHP_URL_QUERY) ? '&' : '?') . "name=$name";
                 }
 
                 return $updated_url;
@@ -218,10 +218,10 @@ class EMCS_Embed
 
     private function prepare_embed_url($url, $url_parts = [])
     {
-
         if (empty($url) || empty($url_parts)) return;
 
-        $url .= '?' . implode('&', $url_parts);
+        $delimiter = (parse_url($url, PHP_URL_QUERY)) ? '&' : '?';
+        $url .= $delimiter . implode('&', $url_parts);
 
         return $url;
     }
