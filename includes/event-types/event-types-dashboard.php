@@ -42,7 +42,11 @@ class EMCS_Event_Types_Dashboard
             <?php esc_html_e('Event Types', 'embed-calendly-scheduling'); ?>
             <div class="emcs-sync-event-types">
                 <form action="" method="POST">
-                    <button type="submit" name="emcs_sync_event_types" class="button-primary emcs-sync-button"><span class="dashicons dashicons-update-alt emcs-dashicon"></span> <?php esc_html_e('Sync', 'embed-calendly-scheduling'); ?> </button>
+                    <?php wp_nonce_field('emcs_sync_event_types_action', '_wpnonce', true, true); ?>
+                    <button type="submit" name="emcs_sync_event_types" class="button-primary emcs-sync-button">
+                        <span class="dashicons dashicons-update-alt emcs-dashicon"></span>
+                        <?php esc_html_e('Sync', 'embed-calendly-scheduling'); ?>
+                    </button>
                 </form>
             </div>
         </div>
@@ -80,7 +84,7 @@ class EMCS_Event_Types_Dashboard
                                 </td>
                                 <td class="shortcode emcs-event-type-column" data-colname="<?php esc_attr_e('Shortcode', 'embed-calendly-scheduling'); ?>"> <input style="background:#bfefff" type="text" onclick="this.select();" value="[calendly url=&quot;<?php echo esc_attr($event->url)  ?>&quot; type=&quot;1&quot;]"><br>
                                 </td>
-                                <td class="date emcs-event-type-column" data-colname="<?php esc_attr_e('Status', 'embed-calendly-scheduling'); ?>"><?php echo $status; ?></td>
+                                <td class="date emcs-event-type-column" data-colname="<?php esc_attr_e('Status', 'embed-calendly-scheduling'); ?>"><?php echo esc_attr($status); ?></td>
                             </tr>
 
                         <?php
@@ -103,19 +107,41 @@ class EMCS_Event_Types_Dashboard
 
         private static function display_greeting_listener()
         {
-            if (isset($_GET['emcs_display_greeting'])) {
-                if ($_GET['emcs_display_greeting'] == 0) {
-                    update_option('emcs_display_greeting', 0);
-                }
+            if (!isset($_GET['emcs_display_greeting'])) {
+                return;
+            }
+
+            if (
+                !isset($_GET['_wpnonce']) ||
+                !wp_verify_nonce(
+                    sanitize_text_field(wp_unslash($_GET['_wpnonce'])),
+                    'emcs_display_greeting_action'
+                )
+            ) {
+                return;
+            }
+
+            $display_greeting = sanitize_text_field(wp_unslash($_GET['emcs_display_greeting']));
+
+            if ($display_greeting === '0') {
+
+                update_option('emcs_display_greeting', 0);
+
+                wp_safe_redirect(remove_query_arg(array('emcs_display_greeting', '_wpnonce')));
+                exit;
             }
         }
+
         private static function display_greeting()
         {
             $option = get_option('emcs_display_greeting');
+
             if ($option) {
 
-                if (isset($_GET['emcs_display_greeting'])) {
-                    if ($_GET['emcs_display_greeting'] == 0) {
+                if (isset($_GET['emcs_display_greeting'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                    $display_greeting = sanitize_text_field(wp_unslash($_GET['emcs_display_greeting'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+                    if ($display_greeting === '0') {
                         return;
                     }
                 }
@@ -126,12 +152,23 @@ class EMCS_Event_Types_Dashboard
 
         private static function display_greeting_html()
         {
+
+            $dismiss_notice_url = wp_nonce_url(
+                add_query_arg(
+                    array(
+                        'page' => 'emcs-event-types',
+                        'emcs_display_greeting' => '0',
+                    ),
+                    admin_url('admin.php')
+                ),
+                'emcs_display_greeting_action'
+            );
     ?>
     <div class="emcs-dashboard-greeting">
         <?php esc_html_e('Thank you for downloading EMC Scheduling Manager!', 'embed-calendly-scheduling'); ?>
         <div class="emcs-greeting-right">
             <a href="<?php echo esc_url(admin_url('admin.php?page=emcs-settings#emcs-thankyou')); ?>"><?php esc_html_e('Read thank you note', 'embed-calendly-scheduling'); ?></a> |
-            <a href="<?php echo esc_url(admin_url('admin.php?page=emcs-event-types&emcs_display_greeting=0')); ?>" class="emcs-greeting-dismiss"><?php esc_html_e('Dismiss', 'embed-calendly-scheduling'); ?></a>
+            <a href="<?php echo esc_url($dismiss_notice_url); ?>" class="emcs-greeting-dismiss"><?php esc_html_e('Dismiss', 'embed-calendly-scheduling'); ?></a>
         </div>
     </div>
 <?php

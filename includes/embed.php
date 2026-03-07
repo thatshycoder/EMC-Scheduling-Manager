@@ -46,7 +46,7 @@ class EMCS_Embed
     {
         if (!empty($this->atts)) {
 
-            do_action('emcp_before_calendar_embed', $this->url);
+            do_action('emcs_before_calendar_embed', $this->url);
 
             $sanitized_atts = $this->clean_shortcode_atts($this->atts);
 

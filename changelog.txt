@@ -1,4 +1,4 @@
-=== EMC - Easily Embed Calendly Scheduling Features ===
+=== EMC - Easily Embed Calendly Scheduling ===
 Authors: Simpma Solutions
 Plugin Page: https://wordpress.org/plugins/embed-calendly-scheduling/
 

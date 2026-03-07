@@ -24,13 +24,15 @@ class EMCS_Event_Types
     private static function get_event_types_from_db()
     {
         global $wpdb;
-        $table_name = self::get_emcs_table();
+        $table_name = esc_sql(self::get_emcs_table());
 
         if (!self::emcs_event_types_table_exists()) {
             return false;
         }
 
-        $query = "SELECT * FROM $table_name";
+        $query = "SELECT * FROM `{$table_name}`";
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
         $event_types = $wpdb->get_results($query);
 
         if (!empty($event_types)) {
@@ -43,9 +45,18 @@ class EMCS_Event_Types
     private static function emcs_event_types_table_exists()
     {
         global $wpdb;
+
         $table_name = self::get_emcs_table();
 
-        return ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name);
+        return (
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            $wpdb->get_var(
+                $wpdb->prepare(
+                    'SHOW TABLES LIKE %s',
+                    $table_name
+                )
+            ) === $table_name
+        );
     }
 
     private static function cache_calendly_event_types($event_types)
@@ -58,6 +69,8 @@ class EMCS_Event_Types
 
             foreach ($event_types as $event_type) {
                 $data = self::prepare_event_type($event_type);
+
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $wpdb->insert(self::get_emcs_table(), $data);
             }
 
@@ -89,31 +102,29 @@ class EMCS_Event_Types
 
         if (!empty($options['emcs_v2api_key'])) {
 
-            if(function_exists('emcs_decrypt_key')) {
-                
+            if (function_exists('emcs_decrypt_key')) {
+
                 $api_key = emcs_decrypt_key($options['emcs_v2api_key']);
                 $calendly = new EMCS_API('v2', $api_key);
 
                 // retry v1 key if v2 key returns empty results
-                if($calendly->emcs_get_events() === FALSE) {
-                    
+                if ($calendly->emcs_get_events() === FALSE) {
+
                     $api_key = emcs_decrypt_key($options['emcs_v1api_key']);
                     $calendly = new EMCS_API('v1', $api_key);
 
                     return $calendly->emcs_get_events();
-                    
                 }
 
                 return $calendly->emcs_get_events();
             }
-
         } elseif (!empty($options['emcs_v1api_key'])) {
 
-            if(function_exists('emcs_decrypt_key')) {
-                
+            if (function_exists('emcs_decrypt_key')) {
+
                 $api_key = emcs_decrypt_key($options['emcs_v1api_key']);
                 $calendly = new EMCS_API('v1', $api_key);
-                
+
                 return $calendly->emcs_get_events();
             }
         }
@@ -167,9 +178,32 @@ class EMCS_Event_Types
 
     public static function sync_event_types_button_listener()
     {
-        if (isset($_REQUEST['emcs_sync_event_types'])) {
-            self::sync_event_types();
+        if (! isset($_POST['emcs_sync_event_types'])) {
+            return;
         }
+
+        // Verify nonce
+        if (
+            !isset($_POST['_wpnonce']) ||
+            !wp_verify_nonce(
+                sanitize_text_field(wp_unslash($_POST['_wpnonce'])),
+                'emcs_sync_event_types_action'
+            )
+        ) {
+            return;
+        }
+
+        self::sync_event_types();
+
+        // redirect back to current plugin page
+        if (isset($_GET['page'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $page = sanitize_text_field(wp_unslash($_GET['page'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            wp_safe_redirect(admin_url('admin.php?page=' . $page));
+        } else {
+            wp_safe_redirect(admin_url());
+        }
+
+        exit;
     }
 
     private static function sync_event_types()
@@ -183,8 +217,9 @@ class EMCS_Event_Types
     {
         global $wpdb;
         $table_name = self::get_emcs_table();
-        $query = "TRUNCATE table $table_name";
 
-        return $wpdb->query($query);
+        // Table name is plugin-controlled and cannot use prepare placeholders
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+        return $wpdb->query("TRUNCATE TABLE `{$table_name}`");
     }
 }

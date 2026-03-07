@@ -1,9 +1,9 @@
-=== EMC - Easily Embed Calendly Scheduling Features ===
+=== EMC - Easily Embed Calendly Scheduling ===
 Contributors: turn2honey
 Donate link: https://simpma.com/emc/pricing/
 Tags: appointment, booking, embed calendar, calendly, scheduling
 Requires at least: 4.6
-Tested up to: 6.9.1
+Tested up to: 6.9
 Stable tag: 4.5
 Requires PHP: 7.0
 License: GPLv2 or later
