@@ -2,10 +2,10 @@
 
 /**
  * Plugin Name: EMC - Easily Embed Calendly Scheduling
- * Description: Simplest way to manage & embed Calendly scheduling features in WordPress.
+ * Description: Embed Calendly scheduling pages in WordPress and optimize your booking flow with analytics, availability indicator, and conversion tools.
  * Author: Simpma Solutions
  * Author URI: https://simpma.com/emc/
- * Version: 4.5
+ * Version: 5.0
  * License: GPLv2 or later
  * Text Domain: embed-calendly-scheduling
  */
@@ -81,7 +81,8 @@ function emcs_calendly_scripts()
     wp_register_script('emcs_calendly_js',  EMCS_URL . 'assets/js/widget.js', [], filemtime(EMCS_DIR . 'assets/js/widget.js'), true);
 }
 
-add_shortcode('calendly', array('EMCS_Shortcode', 'register_shortcode'));
+add_shortcode('calendly', array('EMCS_Shortcode', 'basic_embedder'));
+add_shortcode('calendly_dynamic_embedder', array('EMCS_Shortcode', 'dynamic_embedder'));
 add_action('admin_menu', 'EMCS_Event_Types_Dashboard::init');
 add_action('admin_menu', 'EMCS_Customizer::init');
 include_once(EMCS_INCLUDES . 'settings.php');
