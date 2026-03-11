@@ -108,6 +108,17 @@ class EMCS_Promotions
                     <?php
                     printf(
                         /* translators: %1$s opens a strong tag, %2$s closes a strong tag, %3$s add line breaks */
+                        esc_html__('%1$sTrack marketing campaigns%2$s%3$s Pass common UTM parameters like utm_source, utm_medium, etc to Calendly & Integrate booking data with your CRM.', 'embed-calendly-scheduling'),
+                        '<strong>',
+                        '</strong>',
+                        '<br><br>'
+                    );
+                    ?>
+                </li>
+                <li>
+                    <?php
+                    printf(
+                        /* translators: %1$s opens a strong tag, %2$s closes a strong tag, %3$s add line breaks */
                         esc_html__('%1$sPriority support when it matters%2$s%3$s Get fast assistance when your scheduling system is part of your business workflow.', 'embed-calendly-scheduling'),
                         '<strong>',
                         '</strong>',

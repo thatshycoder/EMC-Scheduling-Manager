@@ -41,15 +41,17 @@ Perfect for anyone who simply wants to **add a Calendly booking widget to WordPr
 
 **[EMC Pro](https://simpma.com/emc/pricing/)** expands the plugin from a simple embed solution into a booking optimization toolkit, helping you increase completed bookings and understand what drives scheduling activity.
 
-### Business Integrations
+### Business Integrations & Marketing Tracking
 
 - **WooCommerce integration for booking after purchase**
 - **Redirect users after scheduling to custom pages**
+- **Track marketing campaigns** Pass common UTM parameters like utm_source, utm_medium, utm_campaign, utm_content, and utm_term directly to your booking pages.
+- **CRM-friendly leads** Integrate booking data with your CRM to see exactly which campaigns are converting into booked calls.
 
 ### Analytics & Booking Insights
 
 - **Track booking activity and engagement**
-- **See which pages generate the most bookings**
+- **Know which channels, pages, and campaigns drive appointments and revenue growth.**
 - **Export analytics data for reporting**
 
 ### Scheduling Workflow Tools
