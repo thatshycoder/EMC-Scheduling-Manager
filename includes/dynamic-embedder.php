@@ -103,36 +103,34 @@ class EMCS_Dynamic_Embedder
 
         ob_start();
 ?>
-
         <div class="emcs-dynamic-wrapper">
+            <?php if (count($this->events) > 1): ?>
+                <div class="emcs-event-buttons">
 
-            <div class="emcs-event-buttons">
+                    <?php
 
-                <?php
+                    foreach ($this->events as $event):
 
-                foreach ($this->events as $event):
+                        $name = !empty($event->name) ? sanitize_text_field($event->name) : '';
+                        $url  = !empty($event->url) ? esc_url($event->url) : '';
 
-                    $name = !empty($event->name) ? sanitize_text_field($event->name) : '';
-                    $url  = !empty($event->url) ? esc_url($event->url) : '';
+                        if (empty($url)) continue;
 
-                    if (empty($url)) continue;
+                    ?>
 
-                ?>
+                        <button
+                            class="emcs-event-button"
+                            data-event-url="<?php echo esc_attr($url); ?>"
+                            data-form-height="<?php echo esc_attr($form_height); ?>"
+                            data-hide-cookie="<?php echo esc_attr($cookie_banner); ?>">
 
-                    <button
-                        class="emcs-event-button"
-                        data-event-url="<?php echo esc_attr($url); ?>"
-                        data-form-height="<?php echo esc_attr($form_height); ?>"
-                        data-hide-cookie="<?php echo esc_attr($cookie_banner); ?>">
+                            <?php echo esc_html($name); ?>
 
-                        <?php echo esc_html($name); ?>
+                        </button>
 
-                    </button>
-
-                <?php endforeach; ?>
-
-            </div>
-
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
             <div class="emcs-event-display">
 
                 <?php
@@ -152,9 +150,7 @@ class EMCS_Dynamic_Embedder
                 }
 
                 ?>
-
             </div>
-
         </div>
 
 <?php

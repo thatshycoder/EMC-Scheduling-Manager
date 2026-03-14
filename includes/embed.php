@@ -12,8 +12,8 @@ class EMCS_Embed
     public function __construct($atts)
     {
         $this->atts = $atts;
-        $this->url = isset($atts['url']) ? esc_url_raw($atts['url']) : '';
-        $this->redirection_url = isset($atts['redirection_url']) ? esc_url_raw($atts['redirection_url']) : '';
+        $this->url = isset($atts['url']) ? sanitize_url($atts['url']) : '';
+        $this->redirection_url = isset($atts['redirection_url']) ? sanitize_url($atts['redirection_url']) : '';
 
         // prefill user fields always
         if (!empty($atts['prefill_fields'])) {
@@ -86,7 +86,9 @@ class EMCS_Embed
             $allowed = ['name', 'email'];
             $query_array = array_intersect_key($query_array, array_flip($allowed));
 
-            $url = $parsed['scheme'] . '://' . $parsed['host'] . $parsed['path'];
+            $url = (isset($parsed['scheme']) ? $parsed['scheme'] . '://' : '') .
+                (isset($parsed['host']) ? $parsed['host'] : '') .
+                (isset($parsed['path']) ? $parsed['path'] : '');
 
             if (!empty($query_array)) {
                 $url .= '?' . http_build_query($query_array);
@@ -99,32 +101,40 @@ class EMCS_Embed
     private function clean_shortcode_atts($atts)
     {
         $sanitized_atts = [];
+
         if ($atts) {
             foreach ($atts as $key => $val) {
+
                 switch ($key) {
+
                     case 'url':
-                        $sanitized_atts[$key] = esc_url($val);
+                        $sanitized_atts[$key] = sanitize_url($val);
                         break;
+
                     case 'text':
-                        $sanitized_atts[$key] = esc_html($val);
+                        $sanitized_atts[$key] = sanitize_text_field($val);
                         break;
+
                     case 'text_color':
                     case 'button_color':
                         $sanitized_atts[$key] = preg_replace('/[^#a-zA-Z0-9]/', '', sanitize_text_field($val));
                         break;
+
                     case 'branding':
                     case 'hide_details':
                     case 'cookie_banner':
                     case 'prefill_fields':
-                        $sanitized_atts[$key] = (int)$val;
+                        $sanitized_atts[$key] = (int) $val;
                         break;
+
                     case 'form_height':
                     case 'form_width':
                     case 'text_size':
                         $sanitized_atts[$key] = intval($val) . 'px';
                         break;
+
                     default:
-                        $sanitized_atts[$key] = esc_attr($val);
+                        $sanitized_atts[$key] = sanitize_text_field($val);
                 }
             }
         }
@@ -160,13 +170,13 @@ class EMCS_Embed
     private function embed_inline_widget($atts = [])
     {
         return '<div id="calendly-inline-widget" class="calendly-inline-widget ' . esc_attr($atts['style_class']) . '" 
-                    data-url="' . esc_attr($this->url) . '" data-redirection="' . esc_attr($this->redirection_url) . '" 
+                    data-url="' . esc_url($this->url) . '" data-redirection="' . esc_url($this->redirection_url) . '" 
                     style="height:' . esc_attr($atts['form_height']) . '; min-width:' . esc_attr($atts['form_width']) . '"></div>';
     }
 
     private function embed_popup_text_widget($atts = [])
     {
-        return '<a id="calendly-popup-text-widget" data-url="' . esc_attr($this->url) . '" data-redirection="' . esc_attr($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
+        return '<a id="calendly-popup-text-widget" data-url="' . esc_url($this->url) . '" data-redirection="' . esc_url($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
                     style="font-size:' . esc_attr($atts['text_size']) . '; color:' . esc_attr($atts['text_color']) . '">' . esc_html($atts['text']) . '</a>';
     }
 
@@ -178,7 +188,7 @@ class EMCS_Embed
             default => apply_filters('emcs_large_inline_button', '20px'),
         };
 
-        return '<a id="calendly-inline-button-widget" data-url="' . esc_attr($this->url) . '" data-redirection="' . esc_attr($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
+        return '<a id="calendly-inline-button-widget" data-url="' . esc_url($this->url) . '" data-redirection="' . esc_url($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
                     style="background-color:' . esc_attr($atts['button_color']) . '; padding:' . esc_attr($padding) . '; font-size:' . esc_attr($atts['text_size']) . ';
                     color:' . esc_attr($atts['text_color']) . ';">' . esc_html($atts['text']) . '</a>';
     }
@@ -201,15 +211,15 @@ class EMCS_Embed
                 }";
         }
 
-        return "<div id='calendly-popup-button-widget' data-url='" . esc_attr($this->url) . "' data-redirection='" . esc_attr($this->redirection_url) . "' style='display:none'>
+        return "<div id='calendly-popup-button-widget' data-url='" . esc_url($this->url) . "' data-redirection='" . esc_url($this->redirection_url) . "' style='display:none'>
             <script>
                 window.onload = function() {
                     Calendly.initBadgeWidget({
-                        url: '" . esc_js($this->url) . "',
+                        url: " . wp_json_encode($this->url, JSON_UNESCAPED_SLASHES) . ",
                         text: '" . esc_js($atts['text']) . "',
                         color: '" . esc_js($atts['button_color']) . "',
                         textColor: '" . esc_js($atts['text_color']) . "',
-                        branding: " . esc_js($atts['branding']) . "
+                        branding: " . (!empty($atts['branding']) ? 'true' : 'false') . "
                         $prefill_js
                     });
                 };

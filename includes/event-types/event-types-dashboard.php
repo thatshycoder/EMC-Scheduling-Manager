@@ -82,7 +82,7 @@ class EMCS_Event_Types_Dashboard
                                     <strong><span class="row-title"><?php echo esc_attr($event->name); ?></span></strong>
                                     <div class="row-actions"><a href="?page=emcs-customizer&event_type=<?php echo esc_attr($event->slug) ?>" id="emcs-admin-customize-event"><?php esc_html_e('Customize', 'embed-calendly-scheduling'); ?></a>
                                 </td>
-                                <td class="shortcode emcs-event-type-column" data-colname="<?php esc_attr_e('Shortcode', 'embed-calendly-scheduling'); ?>"> <input style="background:#bfefff" type="text" onclick="this.select();" value="[calendly url=&quot;<?php echo esc_attr($event->url)  ?>&quot; type=&quot;1&quot;]"><br>
+                                <td class="shortcode emcs-event-type-column" data-colname="<?php esc_attr_e('Shortcode', 'embed-calendly-scheduling'); ?>"> <input style="background:#bfefff" type="text" onclick="this.select();" value="[calendly url=&quot;<?php echo esc_url($event->url)  ?>&quot; type=&quot;1&quot;]"><br>
                                 </td>
                                 <td class="date emcs-event-type-column" data-colname="<?php esc_attr_e('Status', 'embed-calendly-scheduling'); ?>"><?php echo esc_attr($status); ?></td>
                             </tr>

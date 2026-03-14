@@ -4,6 +4,16 @@ Plugin Page: https://wordpress.org/plugins/embed-calendly-scheduling/
 
 == Changelog ==
 
+= 5.2 - 14-03-2026 =
+
+- Security improvement
+- Fixed dynamic embedder UX
+- Correctly hide cookie notice in popup button
+
+= 5.1 - 12-03-2026 =
+
+- Dynamic embedder lite
+
 = 5.0 - 11-03-2026 =
 
 - Added dynamic calendar embedder
