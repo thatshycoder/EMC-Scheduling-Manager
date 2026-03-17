@@ -4,6 +4,10 @@ Plugin Page: https://wordpress.org/plugins/embed-calendly-scheduling/
 
 == Changelog ==
 
+= 5.3 - 17-03-2026 =
+
+- Security improvement
+
 = 5.2 - 14-03-2026 =
 
 - Security improvement

@@ -64,7 +64,7 @@ class EMCS_Shortcode
         $atts = $atts + $defaults;
 
         // Sanitize known keys
-        $atts['url']              = !empty($atts['url']) ? sanitize_url($atts['url']) : '';
+        $atts['url']              = !empty($atts['url']) ? esc_url_raw($atts['url']) : '';
         $atts['embed_type']       = intval($atts['type']);
         $atts['text']             = sanitize_text_field($atts['text']);
         $atts['text_color']       = preg_replace('/[^#a-zA-Z0-9]/', '', sanitize_text_field($atts['text_color']));

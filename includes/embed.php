@@ -12,8 +12,8 @@ class EMCS_Embed
     public function __construct($atts)
     {
         $this->atts = $atts;
-        $this->url = isset($atts['url']) ? sanitize_url($atts['url']) : '';
-        $this->redirection_url = isset($atts['redirection_url']) ? sanitize_url($atts['redirection_url']) : '';
+        $this->url = isset($atts['url']) ? esc_url_raw($atts['url']) : '';
+        $this->redirection_url = isset($atts['redirection_url']) ? esc_url_raw($atts['redirection_url']) : '';
 
         // prefill user fields always
         if (!empty($atts['prefill_fields'])) {
@@ -55,7 +55,7 @@ class EMCS_Embed
 
             do_action('emcs_before_calendar_embed', $this->url);
 
-            $sanitized_atts = $this->clean_shortcode_atts($this->atts);
+            $sanitized_atts = $this->atts;
 
             if ($sanitized_atts) {
                 switch ($sanitized_atts['embed_type']) {
@@ -98,50 +98,6 @@ class EMCS_Embed
         return $url;
     }
 
-    private function clean_shortcode_atts($atts)
-    {
-        $sanitized_atts = [];
-
-        if ($atts) {
-            foreach ($atts as $key => $val) {
-
-                switch ($key) {
-
-                    case 'url':
-                        $sanitized_atts[$key] = sanitize_url($val);
-                        break;
-
-                    case 'text':
-                        $sanitized_atts[$key] = sanitize_text_field($val);
-                        break;
-
-                    case 'text_color':
-                    case 'button_color':
-                        $sanitized_atts[$key] = preg_replace('/[^#a-zA-Z0-9]/', '', sanitize_text_field($val));
-                        break;
-
-                    case 'branding':
-                    case 'hide_details':
-                    case 'cookie_banner':
-                    case 'prefill_fields':
-                        $sanitized_atts[$key] = (int) $val;
-                        break;
-
-                    case 'form_height':
-                    case 'form_width':
-                    case 'text_size':
-                        $sanitized_atts[$key] = intval($val) . 'px';
-                        break;
-
-                    default:
-                        $sanitized_atts[$key] = sanitize_text_field($val);
-                }
-            }
-        }
-
-        return $sanitized_atts;
-    }
-
     private function prefill_fields($url)
     {
         $current_user = wp_get_current_user();
@@ -154,7 +110,9 @@ class EMCS_Embed
             $query['email'] = $current_user->user_email;
         }
 
-        $name = trim($current_user->first_name . ' ' . $current_user->last_name);
+        $name = !empty($current_user->first_name) || !empty($current_user->last_name)
+            ? trim($current_user->first_name . ' ' . $current_user->last_name)
+            : '';
 
         if (!empty($name)) {
             $query['name'] = $name;
@@ -176,7 +134,7 @@ class EMCS_Embed
 
     private function embed_popup_text_widget($atts = [])
     {
-        return '<a id="calendly-popup-text-widget" data-url="' . esc_url($this->url) . '" data-redirection="' . esc_url($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
+        return '<a id="calendly-popup-text-widget" data-url="' . esc_url($this->url) . '" data-redirection="' . esc_url($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="#" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
                     style="font-size:' . esc_attr($atts['text_size']) . '; color:' . esc_attr($atts['text_color']) . '">' . esc_html($atts['text']) . '</a>';
     }
 
@@ -188,7 +146,7 @@ class EMCS_Embed
             default => apply_filters('emcs_large_inline_button', '20px'),
         };
 
-        return '<a id="calendly-inline-button-widget" data-url="' . esc_url($this->url) . '" data-redirection="' . esc_url($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
+        return '<a id="calendly-inline-button-widget" data-url="' . esc_url($this->url) . '" data-redirection="' . esc_url($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="#" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
                     style="background-color:' . esc_attr($atts['button_color']) . '; padding:' . esc_attr($padding) . '; font-size:' . esc_attr($atts['text_size']) . ';
                     color:' . esc_attr($atts['text_color']) . ';">' . esc_html($atts['text']) . '</a>';
     }
@@ -201,7 +159,10 @@ class EMCS_Embed
 
             $current_user = wp_get_current_user();
 
-            $name = !empty($current_user->first_name || $current_user->last_name) ? trim($current_user->first_name . ' ' . $current_user->last_name) : '';
+            $name = !empty($current_user->first_name) || !empty($current_user->last_name)
+                ? trim($current_user->first_name . ' ' . $current_user->last_name)
+                : '';
+
             $email = !empty($current_user->user_email) ? $current_user->user_email : '';
 
             $prefill_js = ",
