@@ -38,4 +38,27 @@ class EMCS_Admin
         require_once(EMCS_EVENT_TYPES . 'event-types.php');
         EMCS_Event_Types::create_emcs_event_types_table();
     }
+
+    public static function sync_event_types_button_listener()
+    {
+        if (
+            !isset($_POST['_wpnonce']) ||
+            !wp_verify_nonce(
+                sanitize_text_field(wp_unslash($_POST['_wpnonce'])),
+                'emcs_sync_event_types_action'
+            )
+        ) {
+            wp_die('Invalid nonce');
+        }
+
+        include_once(EMCS_EVENT_TYPES . 'event-types.php');
+        EMCS_Event_Types::sync_event_types();
+
+        $redirect = isset($_POST['_wp_http_referer'])
+            ? sanitize_text_field(wp_unslash($_POST['_wp_http_referer']))
+            : admin_url('admin.php?page=emcs-event-types');
+
+        wp_safe_redirect($redirect);
+        exit;
+    }
 }

@@ -8,17 +8,22 @@ class EMCS_Event_Types
 {
     public static function get_event_types()
     {
-        if (!self::get_event_types_from_db()) {
+        $cached_event_types = self::get_event_types_from_db();
+
+        if (!$cached_event_types) {
+
             $event_types = self::fetch_event_types_from_calendly();
 
             if (!empty($event_types)) {
                 self::cache_calendly_event_types($event_types);
+
+                return self::get_event_types_from_db();
             } else {
                 return [];
             }
         }
 
-        return self::get_event_types_from_db();
+        return $cached_event_types;
     }
 
     private static function get_event_types_from_db()
@@ -63,21 +68,33 @@ class EMCS_Event_Types
     {
         global $wpdb;
 
-        if (!empty($event_types)) {
-
-            self::create_emcs_event_types_table();
-
-            foreach ($event_types as $event_type) {
-                $data = self::prepare_event_type($event_type);
-
-                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-                $wpdb->insert(self::get_emcs_table(), $data);
-            }
-
-            return true;
+        if (empty($event_types)) {
+            return false;
         }
 
-        return false;
+        self::create_emcs_event_types_table();
+        $table = self::get_emcs_table();
+
+        // get all existing slugs once
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+        $existing_slugs = $wpdb->get_col("SELECT slug FROM {$table}");
+        $existing_slugs = array_flip($existing_slugs);
+
+        foreach ($event_types as $event_type) {
+            $data = self::prepare_event_type($event_type);
+
+            // prevent duplicates
+            if (!isset($existing_slugs[$data['slug']])) {
+
+                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                $wpdb->insert($table, $data);
+
+                // prevent duplicates within same execution
+                $existing_slugs[$data['slug']] = true;
+            }
+        }
+
+        return true;
     }
 
     private static function prepare_event_type($event_type)
@@ -176,37 +193,7 @@ class EMCS_Event_Types
         return $wpdb->get_charset_collate();
     }
 
-    public static function sync_event_types_button_listener()
-    {
-        if (! isset($_POST['emcs_sync_event_types'])) {
-            return;
-        }
-
-        // Verify nonce
-        if (
-            !isset($_POST['_wpnonce']) ||
-            !wp_verify_nonce(
-                sanitize_text_field(wp_unslash($_POST['_wpnonce'])),
-                'emcs_sync_event_types_action'
-            )
-        ) {
-            return;
-        }
-
-        self::sync_event_types();
-
-        // redirect back to current plugin page
-        if (isset($_GET['page'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            $page = sanitize_text_field(wp_unslash($_GET['page'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            wp_safe_redirect(admin_url('admin.php?page=' . $page));
-        } else {
-            wp_safe_redirect(admin_url());
-        }
-
-        exit;
-    }
-
-    private static function sync_event_types()
+    public static function sync_event_types()
     {
         self::flush_event_types();
         $event_types = self::fetch_event_types_from_calendly();

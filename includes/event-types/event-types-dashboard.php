@@ -31,8 +31,6 @@ class EMCS_Event_Types_Dashboard
     {
         include_once(EMCS_EVENT_TYPES . 'event-types.php');
 
-        // hook sync button listener
-        EMCS_Event_Types::sync_event_types_button_listener();
         $events = EMCS_Event_Types::get_event_types();
 ?>
         <div class="emcs-title">
@@ -41,7 +39,8 @@ class EMCS_Event_Types_Dashboard
         <div class="emcs-subtitle">
             <?php esc_html_e('Event Types', 'embed-calendly-scheduling'); ?>
             <div class="emcs-sync-event-types">
-                <form action="" method="POST">
+                <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
+                    <input type="hidden" name="action" value="emcs_sync_event_types">
                     <?php wp_nonce_field('emcs_sync_event_types_action', '_wpnonce', true, true); ?>
                     <button type="submit" name="emcs_sync_event_types" class="button-primary emcs-sync-button">
                         <span class="dashicons dashicons-update-alt emcs-dashicon"></span>

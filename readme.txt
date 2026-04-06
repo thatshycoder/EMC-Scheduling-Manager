@@ -4,7 +4,7 @@ Donate link: https://simpma.com/emc/pricing/
 Tags: appointment, booking, embed calendar, calendly, scheduling
 Requires at least: 4.6
 Tested up to: 6.9
-Stable tag: 5.3
+Stable tag: 5.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +224,12 @@ function emcs_show_promotions() {
 `
 
 == Changelog ==
+
+= 5.4 - 06-04-2026 =
+
+- Prevent duplicates on event types sync
+- Redirect correcly when sync button is clicked
+- Performance improvement
 
 = 5.3 - 17-03-2026 =
 
