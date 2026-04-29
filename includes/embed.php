@@ -140,11 +140,21 @@ class EMCS_Embed
 
     private function embed_inline_button_widget($atts = [])
     {
-        $padding = match ($atts['button_size']) {
-            1 => apply_filters('emcs_small_inline_button', '10px'),
-            2 => apply_filters('emcs_medium_inline_button', '15px'),
-            default => apply_filters('emcs_large_inline_button', '20px'),
-        };
+        $button_size = isset($atts['button_size']) ? (int) $atts['button_size'] : 0;
+
+        switch ($button_size) {
+            case 1:
+                $padding = apply_filters('emcs_small_inline_button', '10px');
+                break;
+
+            case 2:
+                $padding = apply_filters('emcs_medium_inline_button', '15px');
+                break;
+
+            default:
+                $padding = apply_filters('emcs_large_inline_button', '20px');
+                break;
+        }
 
         return '<a id="calendly-inline-button-widget" data-url="' . esc_url($this->url) . '" data-redirection="' . esc_url($this->redirection_url) . '" class="' . esc_attr($atts['style_class']) . '" href="#" onclick="Calendly.initPopupWidget({url:\'' . esc_js($this->url) . '\'});return false;"
                     style="background-color:' . esc_attr($atts['button_color']) . '; padding:' . esc_attr($padding) . '; font-size:' . esc_attr($atts['text_size']) . ';

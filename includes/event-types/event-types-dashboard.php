@@ -164,9 +164,9 @@ class EMCS_Event_Types_Dashboard
             );
     ?>
     <div class="emcs-dashboard-greeting">
-        <?php esc_html_e('Thank you for downloading EMC Scheduling Manager!', 'embed-calendly-scheduling'); ?>
+        <?php esc_html_e('Thanks for using EMC! How\'s your experience?', 'embed-calendly-scheduling'); ?>
         <div class="emcs-greeting-right">
-            <a href="<?php echo esc_url(admin_url('admin.php?page=emcs-settings#emcs-thankyou')); ?>"><?php esc_html_e('Read thank you note', 'embed-calendly-scheduling'); ?></a> |
+            <a href="https://wordpress.org/support/plugin/embed-calendly-scheduling/reviews/#new-post" target="_blank"><?php esc_html_e('Leave a review', 'embed-calendly-scheduling'); ?></a> |
             <a href="<?php echo esc_url($dismiss_notice_url); ?>" class="emcs-greeting-dismiss"><?php esc_html_e('Dismiss', 'embed-calendly-scheduling'); ?></a>
         </div>
     </div>

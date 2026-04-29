@@ -4,6 +4,10 @@ Plugin Page: https://wordpress.org/plugins/embed-calendly-scheduling/
 
 == Changelog ==
 
+= 5.5 - 29-04-2026 =
+
+- Improved compatibility with older PHP versions
+
 = 5.4 - 06-04-2026 =
 
 - Prevent duplicates on event types sync
