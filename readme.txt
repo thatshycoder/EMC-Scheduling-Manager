@@ -3,8 +3,8 @@ Contributors: turn2honey
 Donate link: https://simpma.com/emc/pricing/
 Tags: appointment, booking, embed calendar, calendly, scheduling
 Requires at least: 4.6
-Tested up to: 6.9
-Stable tag: 5.5
+Tested up to: 7.0
+Stable tag: 5.6
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -16,6 +16,8 @@ Embed Calendly scheduling pages in WordPress and optimize your booking flow with
 [EMC Scheduling Manager](https://simpma.com/emc/) makes it easy to **embed Calendly scheduling pages into your WordPress website**.
 
 EMC is designed not only to embed scheduling pages, but also to help businesses **improve booking completion** and understand how visitors interact with their scheduling pages.
+
+[Watch Demo](http://simpma.com/emc/#demo)
 
 Add Calendly booking forms anywhere on your site using a simple shortcode. Display your scheduling page inline, open it in a popup, or trigger it from a button — all without writing code.
 
@@ -224,6 +226,11 @@ function emcs_show_promotions() {
 `
 
 == Changelog ==
+
+= 5.6 - 01-06-2026 =
+
+- Improved inline popup button styling
+- Tested & ensured compatibility with the latest WordPress version
 
 = 5.5 - 29-04-2026 =
 

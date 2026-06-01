@@ -5,7 +5,7 @@
  * Description: Embed Calendly scheduling pages in WordPress and optimize your booking flow with analytics, availability indicator, and conversion tools.
  * Author: Simpma Solutions
  * Author URI: https://simpma.com/emc/
- * Version: 5.5
+ * Version: 5.6
  * License: GPLv2 or later
  * Text Domain: embed-calendly-scheduling
  */
