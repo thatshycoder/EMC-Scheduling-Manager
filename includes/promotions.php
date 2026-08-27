@@ -293,22 +293,23 @@ class EMCS_Promotions
 
             $dimiss_notice_url = wp_nonce_url(admin_url('?' . self::STOP_PROMOTIONS_OPTION . '=1'), 'emcs_dismiss_notice');
         ?>
-            <div class="notice notice-warning is-dismissible emcs-rebrand-notice">
+            <div class="notice notice-info is-dismissible emcs-newsletter-notice">
                 <div class="emcs-row">
                     <div class="emcs-col">
-                        <p>
-                            <strong><?php esc_html_e('Your Booking Page Could Be Generating More Clients', 'embed-calendly-scheduling'); ?></strong><br>
-                        </p>
-                        <p>
-                            <?php
-                            /* translators: %1$s adds a new line tag */
-                            printf(esc_html__('Uncover opportunities to increase completed bookings and upsell%1$s additional services directly from your scheduling flow.', 'embed-calendly-scheduling'), '<br>'); ?>
-                            <br><br>
-                            <a href="https://simpma.com/emc/grow/" target="_blank"><?php esc_html_e('Discover How >>', 'embed-calendly-scheduling') ?></a>
-                        </p>
+                        <h3>More features coming to <span class="emcs-primary-color">EMC</span> soon!</h3>
+                        <p>Be among the first to get notified.</p>
+                        <div id="emcs_embed_signup">
+                            <form action="https://embedcalendly.us6.list-manage.com/subscribe/post?u=91af9e1caa59d5bcf7df9e9ba&amp;id=a81b8045ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                <div id="mc_embed_signup_scroll">
+                                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email" required>
+                                    <input type="submit" value="Get notified!" name="subscribe" id="mc-embedded-subscribe" class="button-primary">
+                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_91af9e1caa59d5bcf7df9e9ba_a81b8045ef" tabindex="-1" value=""></div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="emcs-col emcs-hide-col">
-                        <img src="<?php echo esc_url(EMCS_URL . 'assets/img/emc.svg') ?>" alt="<?php esc_attr_e('emc logo', 'embed-calendly-scheduling'); ?>" width="100px" /><br>
+                        <img src="<?php echo esc_url(EMCS_URL . 'assets/img/emc.svg') ?>" alt="emc logo" width="100px" /><br>
                         <a href="<?php echo esc_url($dimiss_notice_url); ?>" class="emcs-dismiss-btn"><?php esc_html_e("Don't show again.", 'embed-calendly-scheduling'); ?></a>
                     </div>
                 </div>
