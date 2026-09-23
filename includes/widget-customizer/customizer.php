@@ -9,7 +9,7 @@ class EMCS_Customizer
         add_submenu_page(
             'emcs-event-types',
             __('Customize Widget - EMC', 'embed-calendly-scheduling'),
-            __('Customizer', 'embed-calendly-scheduling'),
+            __('Basic Customizer', 'embed-calendly-scheduling'),
             'manage_options',
             'emcs-customizer',
             'EMCS_Customizer::get_layout'
@@ -37,6 +37,16 @@ class EMCS_Customizer
                     </button>
                 </form>
             </div>
+        </div>
+        <div class="emcs-customizer-notice">
+            <?php
+            printf(
+                /* translators: 1: opening anchor tag, 2: closing anchor tag */
+                esc_html__('Need more styling options? %1$sUnlock premium features here >>%2$s', 'embed-calendly-scheduling'),
+                '<a href="' . esc_url('https://simpma.com/emc/pricing/') . '" target="_blank">',
+                '</a>'
+            );
+            ?>
         </div>
         <div class="emcs-container emcs-customizer">
             <?php

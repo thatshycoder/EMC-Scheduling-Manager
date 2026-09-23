@@ -53,7 +53,6 @@ class EMCS_Shortcode
             'button_color'      => '#171e6c',
             'button_style'      => 1,
             'button_size'       => 1,
-            'style_class'       => '',
             'branding'          => 0,
             'hide_details'      => 0,
             'hide_cookie_banner' => 0,
@@ -74,7 +73,6 @@ class EMCS_Shortcode
         $atts['button_color']     = preg_replace('/[^#a-zA-Z0-9]/', '', sanitize_text_field($atts['button_color']));
         $atts['button_style']     = intval($atts['button_style']);
         $atts['button_size']      = intval($atts['button_size']);
-        $atts['style_class']      = sanitize_text_field($atts['style_class']);
         $atts['branding']         = intval($atts['branding']);
         $atts['hide_details']     = intval($atts['hide_details']);
         $atts['cookie_banner']    = intval($atts['hide_cookie_banner']);

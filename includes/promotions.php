@@ -258,17 +258,12 @@ class EMCS_Promotions
                     <div class="emcs-col">
                         <h2>
                             <strong>
-                                <?php echo esc_html__('Make Your Booking Page Work Harder for Your Business', 'embed-calendly-scheduling'); ?>
+                                <?php echo esc_html__('Make Your Calendly Page Work Harder for Your Business', 'embed-calendly-scheduling'); ?>
                             </strong>
                         </h2>
                         <h3>
                             <?php
-                            printf(
-                                /* translators: %1$s opens a strong tag, %2$s closes a strong tag */
-                                esc_html__('Improve booking completion with limited availability indicator, scheduling insights, 
-                                %1$sand smarter booking flows designed to increase conversion rate.', 'embed-calendly-scheduling'),
-                                '<br>'
-                            );
+                             echo esc_html__('Improve booking completion & conversion rates.', 'embed-calendly-scheduling')
                             ?>
                         </h3>
                         <div>
@@ -296,8 +291,8 @@ class EMCS_Promotions
             <div class="notice notice-info is-dismissible emcs-newsletter-notice">
                 <div class="emcs-row">
                     <div class="emcs-col">
-                        <h3>More features coming to <span class="emcs-primary-color">EMC</span> soon!</h3>
-                        <p>Be among the first to get notified.</p>
+                        <h3>More features coming to <span class="emcs-primary-color">EMC</span> for Calendly soon!</h3>
+                        <p>Be among the first to try them out!</p>
                         <div id="emcs_embed_signup">
                             <form action="https://embedcalendly.us6.list-manage.com/subscribe/post?u=91af9e1caa59d5bcf7df9e9ba&amp;id=a81b8045ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                                 <div id="mc_embed_signup_scroll">
