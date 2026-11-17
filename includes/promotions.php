@@ -37,14 +37,15 @@ class EMCS_Promotions
 
         if (self::$show_promotions) {
 
-            add_submenu_page(
-                'emcs-event-types',
-                __('Booking Growth Tools', 'embed-calendly-scheduling'),
-                __('Booking Growth Tools', 'embed-calendly-scheduling'),
-                'manage_options',
-                'emcs-licenses',
-                'EMCS_Promotions::pro_license_page'
-            );
+            // Promotion menu is temporarily hidden
+            // add_submenu_page(
+            //     'emcs-event-types',
+            //     __('Booking Analytics', 'embed-calendly-scheduling'),
+            //     __('Booking Analytics', 'embed-calendly-scheduling'),
+            //     'manage_options',
+            //     'emcs-licenses',
+            //     'EMCS_Promotions::pro_license_page'
+            // );
         }
     }
 
@@ -52,86 +53,14 @@ class EMCS_Promotions
     {
 ?>
         <div class="emcs-pro-promotion-page">
-            <h1><?php esc_html_e('Unlock Booking Growth Tools with EMC Pro', 'embed-calendly-scheduling'); ?></h1>
-            <h4>
-                <i><?php esc_html_e('EMC Pro gives you tools to optimize your booking flow and understand what works.', 'embed-calendly-scheduling'); ?></i>
-            </h4>
-            <ul>
-                <li>
-                    <?php
-                    printf(
-                        /* translators: %1$s opens a strong tag, %2$s closes a strong tag, %3$s add line breaks */
-                        esc_html__('%1$sIncrease bookings with smarter scheduling pages%2$s%3$s Show limited availability indicator (e.g. “Only 2 slots left”) to create urgency and encourage visitors to book sooner.', 'embed-calendly-scheduling'),
-                        '<strong>',
-                        '</strong>',
-                        '<br><br>'
-                    );
-                    ?>
-                </li>
-
-
-                <li>
-                    <?php
-                    printf(
-                        /* translators: %1$s opens a strong tag, %2$s closes a strong tag, %3$s add line breaks */
-                        esc_html__('%1$sTrack what actually leads to booked calls%2$s%3$s The built-in analytics dashboard shows which pages and scheduling widgets generate the most bookings, helping you improve what works.', 'embed-calendly-scheduling'),
-                        '<strong>',
-                        '</strong>',
-                        '<br><br>'
-                    );
-                    ?>
-                </li>
-
-                <li>
-                    <?php
-                    printf(
-                        /* translators: %1$s opens a strong tag, %2$s closes a strong tag, %3$s add line breaks */
-                        esc_html__('%1$sGuide clients after they book%2$s%3$s Automatically redirect users after scheduling to thank-you pages, onboarding steps, upsells, or additional offers.', 'embed-calendly-scheduling'),
-                        '<strong>',
-                        '</strong>',
-                        '<br><br>'
-                    );
-                    ?>
-                </li>
-                <li>
-                    <?php
-                    printf(
-                        /* translators: %1$s opens a strong tag, %2$s closes a strong tag, %3$s add line breaks */
-                        esc_html__('%1$sTurn purchases into scheduled calls%2$s%3$s With WooCommerce integration, customers can book their meeting immediately after purchasing a product or service.', 'embed-calendly-scheduling'),
-                        '<strong>',
-                        '</strong>',
-                        '<br><br>'
-                    );
-                    ?>
-                </li>
-                <li>
-                    <?php
-                    printf(
-                        /* translators: %1$s opens a strong tag, %2$s closes a strong tag, %3$s add line breaks */
-                        esc_html__('%1$sTrack marketing campaigns%2$s%3$s Pass common UTM parameters like utm_source, utm_medium, etc to Calendly & Integrate booking data with your CRM.', 'embed-calendly-scheduling'),
-                        '<strong>',
-                        '</strong>',
-                        '<br><br>'
-                    );
-                    ?>
-                </li>
-                <li>
-                    <?php
-                    printf(
-                        /* translators: %1$s opens a strong tag, %2$s closes a strong tag, %3$s add line breaks */
-                        esc_html__('%1$sPriority support when it matters%2$s%3$s Get fast assistance when your scheduling system is part of your business workflow.', 'embed-calendly-scheduling'),
-                        '<strong>',
-                        '</strong>',
-                        '<br><br>'
-                    );
-                    ?>
-                </li>
-            </ul>
-            <a href="https://simpma.com/emc/grow/" class="button-primary" target="_blank"><?php esc_html_e('See How It Works', 'embed-calendly-scheduling'); ?></a>
-            <br>
-            <h3>
-                Users often upgrade after realizing their scheduling page can do more than collect bookings — <br><i>It can help optimize how visitors become clients.</i>
-            </h3>
+            <h1><?php esc_html_e('Know What Your Booking Page Is Doing', 'embed-calendly-scheduling'); ?></h1>
+            <p>
+                <?php esc_html_e('Your booking page only works if people actually book.', 'embed-calendly-scheduling'); ?>
+            </p>
+            <p>
+                <?php esc_html_e('EMC Pro adds booking page analytics, so you can see what’s working on your site and stop guessing.', 'embed-calendly-scheduling'); ?>
+            </p>
+            <a href="<?php echo esc_url('https://simpma.com/emc/grow/?utm_source=plugin&utm_medium=pro-page&utm_campaign=pro'); ?>" class="button button-primary" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Upgrade to Pro', 'embed-calendly-scheduling'); ?></a>
         </div>
         <?php
     }
@@ -261,13 +190,9 @@ class EMCS_Promotions
                                 <?php echo esc_html__('Make Your Calendly Page Work Harder for Your Business', 'embed-calendly-scheduling'); ?>
                             </strong>
                         </h2>
-                        <h3>
-                            <?php
-                             echo esc_html__('Improve booking completion & conversion rates.', 'embed-calendly-scheduling')
-                            ?>
-                        </h3>
+                        <br>
                         <div>
-                            <a href="https://simpma.com/emc/grow/" class="button-primary" target="_blank"><?php esc_html_e('View Pro Features', 'embed-calendly-scheduling'); ?></a>
+                            <a href="https://simpma.com/emc/grow/" class="button-primary" target="_blank"><?php esc_html_e('See How It Works', 'embed-calendly-scheduling'); ?></a>
                             <a href="<?php echo esc_url($dimiss_notice_url); ?>" class=""><?php esc_html_e("Don't show again.", 'embed-calendly-scheduling'); ?></a>
                         </div>
                     </div>
@@ -291,8 +216,17 @@ class EMCS_Promotions
             <div class="notice notice-info is-dismissible emcs-newsletter-notice">
                 <div class="emcs-row">
                     <div class="emcs-col">
-                        <h3>More features coming to <span class="emcs-primary-color">EMC</span> for Calendly soon!</h3>
-                        <p>Be among the first to try them out!</p>
+                        <h3>
+                            <?php
+                            printf(
+                                /* translators: 1: opening span tag, 2: closing span tag */
+                                esc_html__('Get Early Access to New %1$sEMC%2$s Features', 'embed-calendly-scheduling'),
+                                '<span class="emcs-primary-color">',
+                                '</span>'
+                            );
+                            ?>
+                        </h3>
+                        <p><?php esc_html_e('Plus short tips for using Calendly on WordPress.', 'embed-calendly-scheduling'); ?></p>
                         <div id="emcs_embed_signup">
                             <form action="https://embedcalendly.us6.list-manage.com/subscribe/post?u=91af9e1caa59d5bcf7df9e9ba&amp;id=a81b8045ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                                 <div id="mc_embed_signup_scroll">

@@ -4,7 +4,7 @@ Donate link: https://simpma.com/emc/pricing/
 Tags: appointment, booking, calendly, scheduling
 Requires at least: 4.6
 Tested up to: 7.1
-Stable tag: 5.9
+Stable tag: 6.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -56,16 +56,16 @@ Perfect for anyone who simply wants to **add a Calendly booking widget to WordPr
 - **Track marketing campaigns** Pass common UTM parameters like utm_source, utm_medium, utm_campaign, utm_content, and utm_term directly to your booking pages.
 - **CRM-friendly leads** Integrate booking data with your CRM to see exactly which campaigns are converting into booked calls.
 
-### Analytics & Booking Insights
-
-- **Track booking activity and engagement**
-- **Know which channels, pages, and campaigns drive appointments and revenue growth.**
-- **Export analytics data for reporting**
-
 ### Scheduling Workflow Tools
 
 - **View and manage bookings from your WordPress dashboard**
 - **Send automated and manual email reminders from WordPress**
+
+### Analytics & Booking Insights
+
+- **Track booking activity and engagement**
+- **Know which pages drive appointments and growth.**
+- **Export analytics data for reporting**
 
 ### Advanced Embedding Features
 
@@ -130,6 +130,20 @@ Use the dynamic embedder when you want to display multiple Calendly event types 
 - `text_size` - Text size  
 - `max_slots` - Maximum slots available
 
+## New Availability Shortcode (Free Version)
+
+The free version now includes the `[calendly_availability]` shortcode to display your weekly availability as readable text.
+
+`[calendly_availability theme="default" text_color="#cc3366"]`
+
+Example output:
+"Available on Monday(8am-5pm), Tuesday(9am-5pm), Wednesday(2pm-8pm) ..."
+
+### Parameters
+
+- `theme` - "default" (inline text). Additional themes are reserved for Pro.
+- `text_color` - Hex color applied as an inline text style to the rendered availability text.
+
 ## Customization
 
 Use the **Widget Customizer** under **Dashboard > EMC > Customizer** or configure the shortcode manually.
@@ -143,23 +157,6 @@ Use the **Widget Customizer** under **Dashboard > EMC > Customizer** or configur
 
 - `url` - Calendly scheduling page URL  
 - `text` - Button or link text  
-- `text_color` - Button or link text color  
-- `text_size` - Text size  
-- `button_color` - Button background color  
-- `button_size`
-  - 1 - Small
-  - 2 - Medium
-  - 3 - Large
-
-- `button_style`
-  - 1 - Inline
-  - 2 - Floating
-
-- `branding` - Show or hide branding  
-- `prefill_fields` - Prefill form fields for logged-in users  
-- `hide_cookie_banner` - Hide cookie banner  
-- `hide_details` - Hide event details  
-- `redirection_url` - Page URL to redirect users to after booking completion (Pro)
 
 ### Custom CSS
 
@@ -167,10 +164,14 @@ The **Advanced Customizer** allows you to further customize the appearance and p
 
 You can customize:
 
+- Text color, size, font family, and weight
+- Inline or floating button display
 - Button borders, border radius, and icon
-- Font family, size, and weight
 - Button and text colors
 - Spacing and sizing
+- Hide or show branding
+- Hide or show cookie banner
+- Page URL to redirect users to after booking completion
 - Other widget elements using CSS selectors
 
 ## Built for Booking Conversion
@@ -228,11 +229,6 @@ Enter your Calendly API key in the **API Key** tab on the EMC Scheduling Manager
 > **Important:** When generating your Calendly API key, make sure you accept/enable all required API configurations and permissions. If these are not accepted, EMC may not be able to sync your Calendly data correctly.
 
 
-= How do I style my embed widget? =
-
-Go to **Dashboard → EMC → Customizer**, select an event type, and adjust the settings to generate a shortcode.
-
-
 = How do I add a custom CSS class to the embed? =
 
 For [EMC Pro](https://simpma.com/emc/pricing/) users, use the `style_class` option:
@@ -259,6 +255,11 @@ function emcs_show_promotions() {
 `
 
 == Changelog ==
+
+= 6.0 - 17-11-2026 =
+
+- Added [calendly_availability] shortcode for displaying weekly availability summary
+- Tested & ensured compatibility with the latest WordPress version
 
 = 5.9 - 23-09-2026 =
 

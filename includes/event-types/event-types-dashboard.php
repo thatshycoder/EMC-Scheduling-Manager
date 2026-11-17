@@ -39,14 +39,12 @@ class EMCS_Event_Types_Dashboard
         <div class="emcs-subtitle">
             <?php esc_html_e('Event Types', 'embed-calendly-scheduling'); ?>
             <div class="emcs-sync-event-types">
-                <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
-                    <input type="hidden" name="action" value="emcs_sync_event_types">
-                    <?php wp_nonce_field('emcs_sync_event_types_action', '_wpnonce', true, true); ?>
-                    <button type="submit" name="emcs_sync_event_types" class="button-primary emcs-sync-button">
-                        <span class="dashicons dashicons-update-alt emcs-dashicon"></span>
-                        <?php esc_html_e('Sync', 'embed-calendly-scheduling'); ?>
-                    </button>
-                </form>
+                <div class="emcs-links">
+                    <a href="https://simpma.com/contact/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Ask a Question', 'embed-calendly-scheduling'); ?></a> |
+                    <a href="https://simpma.com/blog/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Articles', 'embed-calendly-scheduling'); ?></a> |
+                    <a href="https://simpma.com/work-with-us/?utm_source=plugin&utm_medium=menu&utm_campaign=hire" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Hire An Expert', 'embed-calendly-scheduling'); ?></a> |
+                    <a href="https://simpma.com/emc/pricing/?utm_source=plugin&utm_medium=menu&utm_campaign=pro" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Get Pro', 'embed-calendly-scheduling'); ?></a>
+                </div>
             </div>
         </div>
         <div class="emcs-wrapper">
@@ -55,6 +53,32 @@ class EMCS_Event_Types_Dashboard
             self::display_greeting();
             self::display_greeting_listener();
             self::display_sync_error();
+
+            ?>
+
+            <div class="emcs-sync-event-types">
+                <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
+                    <input type="hidden" name="action" value="emcs_sync_event_types">
+                    <?php wp_nonce_field('emcs_sync_event_types_action', '_wpnonce', true, true); ?>
+                    <button type="submit" name="emcs_sync_event_types" class="button-primary emcs-sync-button">
+                        <span class="dashicons dashicons-update-alt emcs-dashicon"></span>
+                        <?php esc_html_e('Sync', 'embed-calendly-scheduling'); ?>
+                    </button>
+                </form><br><br>
+            </div>
+
+            <div class="emcs-availability">
+                <?php
+                printf(
+                    /* translators: %s: example shortcode */
+                    esc_html__('Display your availability summary with: %s', 'embed-calendly-scheduling'),
+                    '<strong>' . esc_html('[calendly_availability theme="default" text_color="#cc3366"]') . '</strong>'
+                );
+                ?><br><br>
+                <?php esc_html_e('Or copy the shortcode below to embed your booking widget on a page.', 'embed-calendly-scheduling'); ?>
+            </div>
+
+            <?php
 
             if (empty($events)) {
                 esc_html_e('No event types in your account', 'embed-calendly-scheduling');

@@ -9,6 +9,9 @@ class EMCS_API
     private $api_version;
     private $api_key;
 
+    public const calendly_v1_base_url = 'https://calendly.com/api/v1';
+    public const calendly_v2_base_url = 'https://api.calendly.com';
+
     public function __construct($api_version, $api_key)
     {
         $this->api_version = $api_version;
@@ -100,12 +103,12 @@ class EMCS_API
     {
 
         if ($this->api_version === 'v2') {
-            $url     = 'https://api.calendly.com' . $endpoint;
+            $url     = EMCS_API::calendly_v2_base_url . $endpoint;
             $headers = array(
                 'Authorization' => 'Bearer ' . $api_key,
             );
         } else {
-            $url     = 'https://calendly.com/api/v1' . $endpoint;
+            $url     = EMCS_API::calendly_v1_base_url . $endpoint;
             $headers = array(
                 'X-Token' => $api_key,
             );

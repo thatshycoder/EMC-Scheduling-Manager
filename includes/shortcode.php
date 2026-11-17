@@ -2,8 +2,8 @@
 // Exit if accessed directly
 defined('ABSPATH') || exit;
 
-include_once(EMCS_DIR . 'includes/embed.php');
-include_once(EMCS_DIR . 'includes/dynamic-embedder.php');
+include_once(EMCS_INCLUDES . 'embed.php');
+include_once(EMCS_INCLUDES . 'dynamic-embedder.php');
 
 class EMCS_Shortcode
 {
